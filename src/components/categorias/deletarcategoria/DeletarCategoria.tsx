@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { RotatingLines } from "react-loader-spinner"
 import { useNavigate, useParams } from "react-router-dom"
 import Categoria from "../../../models/Categoria"
-import { deletar, listar } from "../../../services/Services"
+import { listar, deletar } from "../../../services/Services"
 
 function DeletarCategoria() {
 
@@ -13,17 +13,17 @@ function DeletarCategoria() {
 
     const { id } = useParams<{ id: string }>();
 
-    async function buscarPorId(id: string) {
+    async function listarPorId(id: string) {
         try {
             await listar(`/categorias/${id}`, setCategoria)
         } catch (error: any) {
-            alert('Categoria não encontrada!')
+            alert('Tema não encontrado!')
         }
     }
 
     useEffect(() => {
         if (id !== undefined) {
-            buscarPorId(id)
+            listarPorId(id)
         }
     }, [id])
 
@@ -57,7 +57,7 @@ function DeletarCategoria() {
                     className='py-2 px-6 bg-slate-600 text-white font-bold text-2xl'>
                     Categoria
                 </header>
-                <p className='p-8 text-3xl bg-white h-full'>{categoria.tipo}</p>
+                <p className='p-8 text-3xl bg-white h-full'>{categoria.nome}</p>
                 <div className="flex">
                     <button
                         className='text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2'

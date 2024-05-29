@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import Categoria from "../../../models/Categoria";
-import CardCategorias from "../cardcategorias/CardCategorias";
 import { DNA } from 'react-loader-spinner';
+import CardCategorias from "../cardcategorias/CardCategorias";
 import { listar } from "../../../services/Services";
 
 function ListarCategorias() {
 
     const [categorias, setCategorias] = useState<Categoria[]>([]);
 
-    async function buscarCategorias() {
+    async function listarCategorias() {
 
         try {
             await listar('/categorias', setCategorias);
         } catch (error: any) {
-            alert('Erro ao listar Categorias')
+            alert('Erro ao listar as Categorias')
         }
     }
 
     useEffect(() => {
-        buscarCategorias();
+        listarCategorias();
     }, [categorias.length]);
 
     return (
@@ -42,7 +42,7 @@ function ListarCategorias() {
 
                     {categorias.length === 0 &&
                         <span className="text-3xl text-center my-8">
-                            Nenhuma categoria encontrada
+                            Nenhuma categoria foi encontrada
                         </span>
                     }
 

@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { useNavigate, useParams } from "react-router-dom";
 import Categoria from "../../../models/Categoria";
-import { atualizar, cadastrar, listar } from "../../../services/Services";
+import { listar, atualizar, cadastrar } from "../../../services/Services";
 
 function FormCategoria() {
 
@@ -13,7 +13,7 @@ function FormCategoria() {
 
   const { id } = useParams<{ id: string }>();
 
-  async function buscarPorId(id: string) {
+  async function listarPorId(id: string) {
     try {
       await listar(`/categorias/${id}`, setCategoria)
     } catch (error: any) {
@@ -24,7 +24,7 @@ function FormCategoria() {
 
   useEffect(() => {
     if (id !== undefined) {
-      buscarPorId(id)
+      listarPorId(id)
     }
   }, [id])
 
@@ -70,7 +70,7 @@ function FormCategoria() {
   }
 
   return (
-    <div className="container flex flex-col items-center justify-center mx-auto">
+    <div className="flex flex-col items-center justify-center h-full bg-cyan-200">
       <h1 className="text-4xl text-center my-8">
         {id === undefined ? 'Cadastrar Categoria' : 'Editar Categoria'}
       </h1>
@@ -79,20 +79,20 @@ function FormCategoria() {
         onSubmit={gerarNovaCategoria}
       >
         <div className="flex flex-col gap-2 ">
-          <label htmlFor="categoria">Categoria</label>
+          
           <input
             type="text"
             placeholder="Categoria"
-            name='tipo'
+            name='nome'
             className="border-2 border-slate-700 rounded p-2 utral-800"
             required
-            value={categoria.tipo}
+            value={categoria.nome}
             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
           />
         </div>
         <button
           className="rounded text-slate-100 bg-slate-400 
-          hover:bg-slate-800 w-1/2 py-2 mx-auto flex justify-center"
+          hover:bg-cyan-950 w-1/2 py-2 mx-auto flex justify-center"
           type="submit"
         >
           {isLoading ?

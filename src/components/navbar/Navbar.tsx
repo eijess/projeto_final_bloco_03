@@ -1,4 +1,5 @@
-import { ShoppingCart, User } from "@phosphor-icons/react";
+import { ShoppingCart, User } from "@phosphor-icons/react"
+import { Link } from "react-router-dom"
 
 function Navbar() {
  
@@ -11,13 +12,13 @@ function Navbar() {
             <div className="flex gap-3 items-center">
 
                 <img src="https://ik.imagekit.io/eijess/mini-logo.png?updatedAt=1716989543621" className='h-12'></img>
-                <p>FARMÁCIA</p>
+                <Link to='/home'>FARMÁCIA</Link>
                 
             </div>
 
             <div className='flex items-center gap-4'>
-              <div className='hover:underline'>Categorias</div>
-              <div className='hover:underline'>Cadastrar Categoria</div>
+              <Link to= '/categorias' className='hover:underline'>Categorias</Link>
+              <Link to='/cadcategoria' className='hover:underline'>Cadastrar Categoria</Link>
               <User size={32} color="#f9ecec" />
               <ShoppingCart size={32} color="#f9ecec" />
             </div>
